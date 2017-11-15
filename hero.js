@@ -46,8 +46,18 @@ class Hero() {
 	}
 	
 	move (){
-		if(keyIsDown(LEFT_ARROW))
+		if(keyIsDown(LEFT_ARROW)){
 			this.x -= 5;
+		}
+		if(keyIsDown(RIGHT_ARROW)){
+			this.x += 5;
+		}
+		if(keyIsDown(Up_ARROW)){
+			this.y += 5;
+		}
+		if(keyIsDown(DOWN_ARROW)){
+			this.x -= 5;
+		}
 	}
 }
 
