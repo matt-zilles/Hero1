@@ -13,6 +13,7 @@ function setup() {
 }
 
 function draw() {
+	creed.move();
 	creed.show();
 	p.show();
 }
