@@ -6,23 +6,24 @@ function setup() {
 	createCanvas(1000, 750);
 	let x = 100;
 	let y = 100;
-	let _x = 10;
-	let _y = 5;
+	let platx = 10;
+	let platy = 500;
 	let width = 200;
-	creed = new Hero();
-	p = new Platform(_x, _y, width);
+	creed = new Hero(x, y);
+	p = new Platform(platx, platy, width);
 }
 
 function draw() {
-	background(0);
+	background("turquoise");
 	creed.move();
 	creed.show();
 	p.show();
 	text("Score: " + score, 10, 10);
+	checkForFall();
 }
 
 function checkForFall() {
-	if(creed.y > height){
+	if(creed.y > 750){
 		score--;
 		creed.y = 0;
 	}
@@ -30,19 +31,20 @@ function checkForFall() {
 
 class Platform {
 	constructor(_x, _y, width){
-	this._x = _x;
-	this._y = _y;
+	this.x = _x;
+	this.y = _y;
 	this.width = width;
 	this.height = 20;
 	}
 	show(){
-		stroke(255);
+		stroke("orange");
 		strokeWeight(4);
-		fill(155);
-		rect(this._x, this._y, this.height, this.width)
+		fill("purple");
+		rect(this.x, this.y, this.width, this.height)
 	}
 	contains(givenX, givenY) {
 		if(givenX > this.x && givenX < this.x + this.width) {
+			
 			if(givenY > this.y && givenY < this.y + this.height) {
 				return true;
 			}
@@ -72,12 +74,12 @@ class Hero {
 			this.x += 5;
 		}
 		if(keyIsDown(UP_ARROW)){
-			this.y += 5;
+			this.y -= 5;
 		}
 		if(keyIsDown(DOWN_ARROW)){
-			this.x -= 5;
+			this.y += 5;
 		}
-		if(creed.contains(this.x, this.y) == false) {
+		if(p.contains(this.x, this.y) == false) {
 			this.y++;
 		}
 	}
